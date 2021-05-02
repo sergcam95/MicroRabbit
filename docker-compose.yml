@@ -13,8 +13,13 @@ services:
       - 3306:3306
 
   rabbit_mq:
-    image: rabbitmq:3-management-alpine
-    container_name: micro_rabbit_mq
+    image: rabbitmq:3-management
+    hostname: my-rabbit
     ports:
       - 5672:5672
       - 15672:15672
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq
+      - ./rabbitmq/logs:/var/log/rabbitmq/log
