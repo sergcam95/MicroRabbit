@@ -41,7 +41,7 @@ namespace MicroRabbit.Infra.Bus
 
             channel.QueueDeclare(eventName, false, false, false, null);
 
-            var message = JsonSerializer.Serialize(eventName);
+            var message = JsonSerializer.Serialize(@event);
             var body = Encoding.UTF8.GetBytes(message);
                 
             channel.BasicPublish("", eventName, null, body);
